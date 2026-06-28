@@ -2,7 +2,7 @@ import React from "react";
 import { FaQuoteLeft, FaStar } from "react-icons/fa";
 
 const ReviewCard = ({ reviewData }) => {
-  console.log(reviewData);
+  // console.log(reviewData);
   const { userName, user_photoURL, review, ratings, date } = reviewData || {};
   return (
     <div

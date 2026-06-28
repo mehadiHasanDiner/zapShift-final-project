@@ -1,6 +1,6 @@
 import React from "react";
 import Logo from "../Components/Logo";
-import { NavLink } from "react-router";
+import { NavLink, Link } from "react-router";
 
 const Navbar = () => {
   const links = (
@@ -52,7 +52,9 @@ const Navbar = () => {
         <ul className="menu menu-horizontal px-1">{links}</ul>
       </div>
       <div className="navbar-end">
-        <a className="btn">Login</a>
+        <Link to="/login" className="btn">
+          Login
+        </Link>
       </div>
     </div>
   );

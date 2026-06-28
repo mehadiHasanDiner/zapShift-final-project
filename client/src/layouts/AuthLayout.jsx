@@ -5,9 +5,9 @@ import authImage from "../assets/authImage.png";
 
 const AuthLayout = () => {
   return (
-    <div className="max-w-5xl mx-auto">
+    <div className="max-w-5xl mx-auto py-5">
       <Logo></Logo>
-      <div className="flex">
+      <div className="flex items-center">
         <div className="flex-1">
           <Outlet></Outlet>
         </div>
