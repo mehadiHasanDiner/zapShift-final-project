@@ -1,8 +1,19 @@
 import React from "react";
 import Logo from "../Components/Logo";
 import { NavLink, Link } from "react-router";
+import useAuth from "../hooks/useAuth";
+import { FiArrowUpRight } from "react-icons/fi";
 
 const Navbar = () => {
+  const { user, logOut } = useAuth();
+
+  const handleLogout = () => {
+    logOut()
+      .then()
+      .catch((err) => {
+        console.log(err.message);
+      });
+  };
   const links = (
     <>
       <li>
@@ -52,9 +63,19 @@ const Navbar = () => {
         <ul className="menu menu-horizontal px-1">{links}</ul>
       </div>
       <div className="navbar-end">
-        <Link to="/login" className="btn">
-          Login
+        <Link to="/login" className="btn btn-primary text-black mr-4">
+          Be a rider
+          <FiArrowUpRight size={20} />
         </Link>
+        {user ? (
+          <button onClick={handleLogout} className="btn">
+            Logout
+          </button>
+        ) : (
+          <Link to="/login" className="btn">
+            Login
+          </Link>
+        )}
       </div>
     </div>
   );

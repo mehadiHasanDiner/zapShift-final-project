@@ -2,8 +2,10 @@ import React from "react";
 import { useForm } from "react-hook-form";
 import { Link } from "react-router";
 import SocialLogin from "./SocialLogin";
+import useAuth from "../../hooks/useAuth";
 
 const Register = () => {
+  const { registerUser } = useAuth();
   const {
     register,
     handleSubmit,
@@ -11,7 +13,15 @@ const Register = () => {
   } = useForm();
 
   const handleRegistration = (data) => {
-    console.log(data);
+    console.log(data.photo[0]);
+    registerUser(data.email, data.password)
+      .then((result) => {
+        console.log(result.user);
+        // update user profile
+      })
+      .catch((err) => {
+        console.log(err.message);
+      });
   };
 
   return (
@@ -21,6 +31,28 @@ const Register = () => {
       <div className="card-body">
         <form onSubmit={handleSubmit(handleRegistration)}>
           <fieldset className="fieldset">
+            {/* Name */}
+            <label className="label">Email</label>
+            <input
+              type="text"
+              className="input"
+              placeholder="Your Name"
+              {...register("name", { required: true })}
+            />
+            {errors.name?.type === "required" && (
+              <p className="text-red-600">Name is required</p>
+            )}
+            {/* photo */}
+            <label className="label">Photo</label>
+            <input
+              type="file"
+              className="file-input"
+              placeholder="Your Photo"
+              {...register("photo", { required: true })}
+            />
+            {errors.photo?.type === "required" && (
+              <p className="text-red-600">Photo is required</p>
+            )}
             {/* email */}
             <label className="label">Email</label>
             <input

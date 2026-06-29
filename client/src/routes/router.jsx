@@ -7,12 +7,15 @@ import ErrorPage from "../pages/ErrorPage";
 import AuthLayout from "../layouts/AuthLayout";
 import Login from "../pages/Auth/Login";
 import Register from "../pages/Auth/Register";
+import Loading from "../Components/Loading";
+import PrivateRoute from "./privateRoute";
 
 export const router = createBrowserRouter([
   {
     path: "/",
     Component: RootLayout,
     errorElement: <ErrorPage></ErrorPage>,
+
     children: [
       {
         index: true,
@@ -22,10 +25,15 @@ export const router = createBrowserRouter([
         path: "coverage",
         Component: Coverage,
         loader: () => fetch("/serviceCenters.json").then((res) => res.json()),
+        hydrateFallbackElement: <Loading />,
       },
       {
         path: "about-us",
-        Component: AboutUs,
+        element: (
+          <PrivateRoute>
+            <AboutUs></AboutUs>
+          </PrivateRoute>
+        ),
       },
     ],
   },
