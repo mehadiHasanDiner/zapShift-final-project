@@ -9,6 +9,7 @@ import Login from "../pages/Auth/Login";
 import Register from "../pages/Auth/Register";
 import Loading from "../Components/Loading";
 import PrivateRoute from "./privateRoute";
+import Rider from "../pages/Rider/Rider";
 
 export const router = createBrowserRouter([
   {
@@ -22,6 +23,14 @@ export const router = createBrowserRouter([
         Component: Home,
       },
       {
+        path: "rider",
+        element: (
+          <PrivateRoute>
+            <Rider />
+          </PrivateRoute>
+        ),
+      },
+      {
         path: "coverage",
         Component: Coverage,
         loader: () => fetch("/serviceCenters.json").then((res) => res.json()),
@@ -29,11 +38,7 @@ export const router = createBrowserRouter([
       },
       {
         path: "about-us",
-        element: (
-          <PrivateRoute>
-            <AboutUs></AboutUs>
-          </PrivateRoute>
-        ),
+        element: <AboutUs></AboutUs>,
       },
     ],
   },

@@ -1,9 +1,10 @@
 import React from "react";
 import useAuth from "../../hooks/useAuth";
-import { useNavigate } from "react-router";
+import { useNavigate, useLocation } from "react-router";
 
 const SocialLogin = () => {
   const { signInGoogle } = useAuth();
+  const location = useLocation();
   const navigate = useNavigate();
 
   const handleGoogleSignIn = async () => {
@@ -11,7 +12,7 @@ const SocialLogin = () => {
       const result = await signInGoogle();
       console.log(result.user);
       alert("logged in successfully");
-      navigate("/");
+      navigate(location?.state || "/");
     } catch (err) {
       console.log(err?.message);
     }

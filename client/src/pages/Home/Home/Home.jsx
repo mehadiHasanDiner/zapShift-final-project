@@ -4,10 +4,12 @@ import HowItWorks from "../HowItWorks/HowItWorks";
 import ServicesSection from "../ServiceSection/ServiceSection";
 import Brands from "../Brands";
 import Review from "../Review/Review";
+import useAuth from "../../../hooks/useAuth";
 
 const reviewsPromise = fetch("/reviews.json").then((res) => res.json());
 
 const Home = () => {
+  const auth = useAuth();
   return (
     <div>
       <Banner />

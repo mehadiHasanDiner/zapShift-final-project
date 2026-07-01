@@ -55,15 +55,15 @@ const Navbar = () => {
             {links}
           </ul>
         </div>
-        <a className="btn btn-ghost text-xl">
+        <div className="btn btn-ghost text-xl">
           <Logo></Logo>
-        </a>
+        </div>
       </div>
       <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal px-1">{links}</ul>
       </div>
       <div className="navbar-end">
-        <Link to="/login" className="btn btn-primary text-black mr-4">
+        <Link to="/rider" className="btn btn-primary text-black mr-4">
           Be a rider
           <FiArrowUpRight size={20} />
         </Link>

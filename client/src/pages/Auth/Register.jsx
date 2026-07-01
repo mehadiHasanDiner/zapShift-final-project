@@ -1,12 +1,15 @@
 import React from "react";
 import { useForm } from "react-hook-form";
-import { Link } from "react-router";
+import { Link, useLocation, useNavigate } from "react-router";
 import SocialLogin from "./SocialLogin";
 import useAuth from "../../hooks/useAuth";
 import axios from "axios";
 
 const Register = () => {
   const { registerUser, updateUserProfile } = useAuth();
+  const location = useLocation();
+  const navigate = useNavigate();
+  // console.log(location);
   const {
     register,
     handleSubmit,
@@ -38,6 +41,7 @@ const Register = () => {
           updateUserProfile(userProfile)
             .then(() => {
               console.log("user profile updated successfully");
+              navigate(location.state || "/");
             })
             .catch((err) => console.log(err.message));
         });
@@ -124,7 +128,11 @@ const Register = () => {
           </fieldset>
           <p className="text-center ">
             Already have an account. Please{" "}
-            <Link to="/login" className="text-blue-700 cursor-pointer">
+            <Link
+              state={location?.state}
+              to="/login"
+              className="text-blue-700 cursor-pointer"
+            >
               Login
             </Link>
           </p>

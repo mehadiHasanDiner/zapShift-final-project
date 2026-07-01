@@ -32,7 +32,7 @@ const Brands = () => {
         centeredSlides={true}
         spaceBetween={30}
         grabCursor={true}
-        loop={true}
+        // loop={true}
         autoplay={{
           delay: 1000,
           disableOnInteraction: false,
