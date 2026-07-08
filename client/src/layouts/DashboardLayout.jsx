@@ -79,7 +79,7 @@ const DashboardLayout = () => {
                 data-tip="MyParcels"
                 to="/dashboard/my-parcels"
               >
-                <CiDeliveryTruck />
+                <CiDeliveryTruck size={18} />
                 <span className="is-drawer-close:hidden">My Parcels</span>
               </NavLink>
             </li>
