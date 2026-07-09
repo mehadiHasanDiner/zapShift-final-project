@@ -5,6 +5,8 @@ const port = process.env.PORT || 3000;
 require("dotenv").config();
 const { MongoClient, ServerApiVersion, ObjectId } = require("mongodb");
 
+const stripe = require("stripe")(process.env.STRIPE_SECRET);
+
 // middleware
 app.use(express.json());
 app.use(cors());
@@ -39,6 +41,13 @@ async function run() {
       res.send(result);
     });
 
+    app.get("/parcels/:id", async (req, res) => {
+      const id = req.params.id;
+      const query = { _id: new ObjectId(id) };
+      const result = await parcelCollection.findOne(query);
+      res.send(result);
+    });
+
     app.post("/parcels", async (req, res) => {
       const parcel = req.body;
       // parcel created time
@@ -52,6 +61,29 @@ async function run() {
       const query = { _id: new ObjectId(id) };
       const result = await parcelCollection.deleteOne(query);
       res.send(result);
+    });
+
+    // payment related apis
+    app.post("/create-checkout-session", async (req, res) => {
+      const paymentInfo = req.body;
+      const session = await stripe.checkout.sessions.create({
+        line_items: [
+          {
+            // Provide the exact Price ID (for example, price_1234) of the product you want to sell
+            price_data: {
+              currency: "USD",
+              unit_amount: 1500,
+              product_data: {
+                name: paymentInfo.parcelName,
+              },
+            },
+            quantity: 1,
+          },
+        ],
+        mode: "payment",
+        customer_email: paymentInfo.senderEmail,
+        success_url: `${process.env.SITE_DOMAIN}/dashboard/payment-success`,
+      });
     });
 
     // Send a ping to confirm a successful connection
