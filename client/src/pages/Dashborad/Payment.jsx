@@ -16,14 +16,30 @@ const Payment = () => {
     },
   });
 
+  const handlePayment = async () => {
+    const paymentInfo = {
+      cost: parcel.cost,
+      parcelId: parcel._id,
+      senderEmail: parcel.senderEmail,
+      parcelName: parcel.parcelName,
+    };
+    const res = await axiosSecure.post("/create-checkout-session", paymentInfo);
+    console.log(res.data);
+    window.location.href = res.data.url;
+  };
+
   if (isLoading) {
     return <Loading />;
   }
 
   return (
     <div>
-      <p>Please pay for: {parcel.parcelName}</p>
-      <button className="btn btn-primary text-black">Pay</button>
+      <p>
+        Please pay {parcel.cost} for: {parcel.parcelName}
+      </p>
+      <button onClick={handlePayment} className="btn btn-primary text-black">
+        Pay
+      </button>
     </div>
   );
 };
