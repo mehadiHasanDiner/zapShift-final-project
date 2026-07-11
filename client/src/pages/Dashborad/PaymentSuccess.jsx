@@ -22,6 +22,7 @@ const PaymentSuccess = () => {
         });
     }
   }, [sessionId, axiosSecure]);
+
   return (
     <div>
       <h2 className="text-4xl text-secondary text-center font-bold ">

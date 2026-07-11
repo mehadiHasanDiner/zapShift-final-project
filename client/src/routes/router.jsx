@@ -16,6 +16,7 @@ import MyParcels from "../pages/Dashborad/MyParcels";
 import Payment from "../pages/Dashborad/Payment";
 import PaymentSuccess from "../pages/Dashborad/PaymentSuccess";
 import PaymentCancelled from "../pages/Dashborad/PaymentCancelled";
+import PaymentHistory from "../pages/Dashborad/PaymentHistory";
 
 export const router = createBrowserRouter([
   {
@@ -87,6 +88,10 @@ export const router = createBrowserRouter([
       {
         path: "payment/:parcelId",
         Component: Payment,
+      },
+      {
+        path: "payment-history",
+        Component: PaymentHistory,
       },
       {
         path: "payment-success",
