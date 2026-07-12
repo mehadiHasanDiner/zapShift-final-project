@@ -1,4 +1,3 @@
-import React from "react";
 import "swiper/css";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay } from "swiper/modules";
@@ -25,7 +24,7 @@ const Brands = () => {
   return (
     <div>
       <h3 className="text-2xl text-center font-bold mb-6">
-        We've helped thousands of sales teams
+        We've helped thousands of sales teams
       </h3>
       <Swiper
         slidesPerView={4}

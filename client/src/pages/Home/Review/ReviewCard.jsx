@@ -1,4 +1,3 @@
-import React from "react";
 import { FaQuoteLeft, FaStar } from "react-icons/fa";
 
 const ReviewCard = ({ reviewData }) => {

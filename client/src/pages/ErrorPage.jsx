@@ -1,4 +1,3 @@
-import React from "react";
 import pageNotFound from "./../assets/errorpage.jpg";
 import { useNavigate } from "react-router";
 

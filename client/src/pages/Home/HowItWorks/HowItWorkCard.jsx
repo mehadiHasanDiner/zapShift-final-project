@@ -1,5 +1,3 @@
-import React from "react";
-
 const HowItWorkCard = ({ icon: Icon, title, description }) => {
   return (
     <div className="card bg-base-100 border border-base-200 shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-1 cursor-pointer">

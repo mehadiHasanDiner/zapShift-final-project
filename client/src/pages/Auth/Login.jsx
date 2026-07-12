@@ -1,4 +1,3 @@
-import React from "react";
 import { Link, useNavigate, useLocation } from "react-router";
 import SocialLogin from "./SocialLogin";
 import { useForm } from "react-hook-form";

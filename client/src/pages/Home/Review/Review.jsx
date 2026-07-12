@@ -1,4 +1,4 @@
-import React, { use } from "react";
+import { use } from "react";
 import { Autoplay, EffectCoverflow, Pagination } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 import ReviewCard from "./ReviewCard";

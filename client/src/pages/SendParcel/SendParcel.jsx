@@ -1,4 +1,3 @@
-import React from "react";
 import { useForm, useWatch } from "react-hook-form";
 import { useLoaderData } from "react-router";
 import Swal from "sweetalert2";
@@ -33,7 +32,7 @@ const SendParcel = () => {
     const isDocument = data.parcelType === "document";
     const isSameDistrict = data.senderDistrict === data.receiverDistrict;
 
-    let cost = 0;
+    let cost;
     if (isDocument) {
       cost = isSameDistrict ? 60 : 80;
     } else {

@@ -1,5 +1,3 @@
-import React from "react";
-
 const ServiceCard = ({ icon: Icon, title, description, active = false }) => {
   return (
     <div

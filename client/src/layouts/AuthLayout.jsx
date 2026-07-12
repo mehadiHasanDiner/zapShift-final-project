@@ -1,4 +1,3 @@
-import React from "react";
 import Logo from "../Components/Logo";
 import { Outlet } from "react-router";
 import authImage from "../assets/authImage.png";

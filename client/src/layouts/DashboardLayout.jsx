@@ -1,4 +1,3 @@
-import React from "react";
 import { Outlet, Link, NavLink } from "react-router";
 import { CiDeliveryTruck } from "react-icons/ci";
 import { FaRegCreditCard } from "react-icons/fa";

@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import { useRef } from "react";
 import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 import { useLoaderData } from "react-router";
@@ -12,7 +12,7 @@ const Coverage = () => {
     e.preventDefault();
     const location = e.target.location.value;
     const district = serviceCenters.find((c) =>
-      c.district.toLowerCase().includes(location.toLowerCase())
+      c.district.toLowerCase().includes(location.toLowerCase()),
     );
 
     if (district) {
