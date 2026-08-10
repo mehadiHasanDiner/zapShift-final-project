@@ -183,7 +183,7 @@ const Rider = () => {
         <input
           type="submit"
           className="btn btn-primary text-black "
-          value="Send Parcel"
+          value="Submit Application"
         />
       </form>
     </div>

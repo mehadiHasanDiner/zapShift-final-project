@@ -164,7 +164,8 @@ const SendParcel = () => {
                   defaultValue="Pick a Region"
                   className="select"
                 >
-                  <option disabled={true}>Pick a region</option>
+                  {/* <option disabled={true}>Pick a region</option> */}
+                  <option>Pick a region</option>
 
                   {regions.map((d, i) => (
                     <option key={i} value={d}>
@@ -248,7 +249,8 @@ const SendParcel = () => {
                   defaultValue="Pick a Region"
                   className="select"
                 >
-                  <option disabled={true}>Pick a region</option>
+                  {/* <option disabled={true}>Pick a region</option> */}
+                  <option>Pick a region</option>
 
                   {regions.map((d, i) => (
                     <option key={i} value={d}>

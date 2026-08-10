@@ -11,6 +11,7 @@ node_modules
 dist
 dist-ssr
 *.local
+zapshift-final-project-firebase-adminsdk.json
 
 # Editor directories and files
 .vscode/*
