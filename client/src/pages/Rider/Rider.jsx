@@ -46,7 +46,7 @@ const Rider = () => {
   };
 
   return (
-    <div>
+    <div className="max-w-5xl mx-auto px-4 py-8">
       <h2 className="text-4xl text-secondary">Be a Rider</h2>
       <p>
         Enjoy fast, reliable parcel delivery with real-time tracking and zero
@@ -58,9 +58,9 @@ const Rider = () => {
         className="mt-8  text-black"
       >
         {/* two colum */}
-        <div>
+        <div className="">
           {/* sender details */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
+          <div className=" grid grid-cols-1 md:grid-cols-2 gap-12">
             <fieldset className="fieldset ">
               <h4 className="text-2xl font-bold">Tell us about yourself</h4>
               {/* Sender name */}
