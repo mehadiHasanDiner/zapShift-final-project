@@ -1,6 +1,6 @@
 # ZapShift
 
-- [Live Link](https://zapshift-final-project.web.app)
+[Live Link](https://zapshift-final-project.web.app)
 
 ## Technology Used.
 
