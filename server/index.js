@@ -34,9 +34,19 @@ function generateTrackingId() {
 
 // console.log(generateTrackingId());
 
+const corsOptions = {
+  origin: [
+    "http://localhost:5173",
+    "http://localhost:5174",
+    "https://zapshift-client.vercel.app",
+  ],
+  credentials: true,
+  optionsSuccessStatus: 200,
+};
+
 // middleware
 app.use(express.json());
-app.use(cors());
+app.use(cors(corsOptions));
 
 const verifyFBToken = async (req, res, next) => {
   const token = req.headers.authorization;
