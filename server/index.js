@@ -38,7 +38,7 @@ const corsOptions = {
   origin: [
     "http://localhost:5173",
     "http://localhost:5174",
-    "https://zapshift-client.vercel.app",
+    "https://zapshift-final-project.web.app",
   ],
   credentials: true,
   optionsSuccessStatus: 200,
