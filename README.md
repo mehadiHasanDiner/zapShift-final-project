@@ -1,6 +1,6 @@
 # ZapShift
 
-- [Live Link](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
+- [Live Link](https://zapshift-final-project.web.app)
 
 ## Technology Used.
 
