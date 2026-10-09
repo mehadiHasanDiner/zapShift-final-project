@@ -1,3 +1,4 @@
 node_modules
 .env
+.env.*
 zapshift-final-project-firebase-adminsdk.json

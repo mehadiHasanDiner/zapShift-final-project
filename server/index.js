@@ -3,18 +3,26 @@ const cors = require("cors");
 const app = express();
 require("dotenv").config();
 const { MongoClient, ServerApiVersion, ObjectId } = require("mongodb");
-const stripe = require("stripe")(process.env.STRIPE_SECRET);
+const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
 
 const port = process.env.PORT || 3000;
 const crypto = require("crypto");
 
 const admin = require("firebase-admin");
 
-var serviceAccount = require("./zapshift-final-project-firebase-adminsdk.json");
-const { count } = require("console");
+// var serviceAccount = require("./zapshift-final-project-firebase-adminsdk.json");
+// const { count } = require("console");
+
+// admin.initializeApp({
+//   credential: admin.credential.cert(serviceAccount),
+// });
 
 admin.initializeApp({
-  credential: admin.credential.cert(serviceAccount),
+  credential: admin.credential.cert({
+    projectId: process.env.FIREBASE_PROJECT_ID,
+    clientEmail: process.env.FIREBASE_CLIENT_EMAIL,
+    privateKey: process.env.FIREBASE_PRIVATE_KEY.replace(/\\n/g, "\n"),
+  }),
 });
 
 function generateTrackingId() {
@@ -278,35 +286,40 @@ async function run() {
       res.send(riderResult);
     });
 
-    app.patch("/parcels/:id/status", async (req, res) => {
-      const { deliveryStatus, riderId, trackingId } = req.body;
-      const query = { _id: new ObjectId(req.params.id) };
-      const updatedDoc = {
-        $set: {
-          deliveryStatus: deliveryStatus,
-        },
-      };
-
-      if (deliveryStatus === "parcel_delivered") {
-        // update rider information
-        const riderQuery = { _id: new ObjectId(riderId) };
-        const riderUpdatedDoc = {
+    app.patch(
+      "/parcels/:id/status",
+      verifyFBToken,
+      verifyAdmin,
+      async (req, res) => {
+        const { deliveryStatus, riderId, trackingId } = req.body;
+        const query = { _id: new ObjectId(req.params.id) };
+        const updatedDoc = {
           $set: {
-            workStatus: "available",
+            deliveryStatus: deliveryStatus,
           },
         };
-        const riderResult = await ridersCollection.updateOne(
-          riderQuery,
-          riderUpdatedDoc,
-        );
-      }
-      const result = await parcelCollection.updateOne(query, updatedDoc);
 
-      // Tracking Log Save
-      logTracking(trackingId, deliveryStatus);
+        if (deliveryStatus === "parcel_delivered") {
+          // update rider information
+          const riderQuery = { _id: new ObjectId(riderId) };
+          const riderUpdatedDoc = {
+            $set: {
+              workStatus: "available",
+            },
+          };
+          const riderResult = await ridersCollection.updateOne(
+            riderQuery,
+            riderUpdatedDoc,
+          );
+        }
+        const result = await parcelCollection.updateOne(query, updatedDoc);
 
-      res.send(result);
-    });
+        // Tracking Log Save
+        logTracking(trackingId, deliveryStatus);
+
+        res.send(result);
+      },
+    );
 
     app.delete("/parcels/:id", async (req, res) => {
       const id = req.params.id;
@@ -606,6 +619,10 @@ app.get("/", (req, res) => {
   res.send("zap is Shifting running");
 });
 
-app.listen(port, () => {
-  console.log(`Example app listening on port ${port}`);
-});
+module.exports = app;
+
+if (require.main === module) {
+  app.listen(port, () => {
+    console.log(`Example app listening on port ${port}`);
+  });
+}
