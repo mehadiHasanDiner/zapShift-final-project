@@ -1,6 +1,12 @@
-node_modules
+
+
+node_modules/
+zapshift-final-project-firebase-adminsdk.json
 .env
 .env.*
-zapshift-final-project-firebase-adminsdk.json
+.vercel/
+.vercel-backup/
+vercel.backup.json
+*firebase-adminsdk*.json
 .vercel
 .env*
